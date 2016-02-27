@@ -11,11 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +27,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public static final String ADDITIVE_EXTRA = "additive_extra";
     static boolean IS_CODE_RECEIVED;
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -60,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //TODO: add loading indicator
-                IS_CODE_RECEIVED = false;
-                ADDITIVES_QUERY_TEXT = query.replaceAll(" ", "%20");
-                new AdditivesAsyncTask().execute();
+                searchAdditive(query);
                 return true;
             }
 
@@ -74,8 +75,35 @@ public class MainActivity extends AppCompatActivity {
         additivesSearch.onActionViewExpanded();
         //Stop keyboard from automatically popping up
         additivesSearch.clearFocus();
+
+
+        TextView soylentCalcium = (TextView)findViewById(R.id.soylent_calcium);
+        soylentCalcium.setOnClickListener(this);
+        TextView soylentSucralose = (TextView)findViewById(R.id.soylent_sucralose);
+        soylentSucralose.setOnClickListener(this);
+        TextView soylentRiboflavin = (TextView)findViewById(R.id.soylent_riboflavin);
+        soylentRiboflavin.setOnClickListener(this);
+
+        TextView redbullSucrose = (TextView)findViewById(R.id.redbull_sucralose);
+        redbullSucrose.setOnClickListener(this);
+        TextView redbullCitric = (TextView)findViewById(R.id.redbull_citric);
+        redbullCitric.setOnClickListener(this);
+        TextView redbullMagnesium = (TextView)findViewById(R.id.redbull_magnesium);
+        redbullMagnesium.setOnClickListener(this);
+
+        TextView chipsTbhq = (TextView)findViewById(R.id.chips_tbhq);
+        chipsTbhq.setOnClickListener(this);
+        TextView chipsAspartame = (TextView)findViewById(R.id.chips_aspartame);
+        chipsAspartame.setOnClickListener(this);
+        TextView chipsTartrazine = (TextView)findViewById(R.id.chips_tartrazine);
+        chipsTartrazine.setOnClickListener(this);
     }
 
+    private void searchAdditive(String query) {
+        IS_CODE_RECEIVED = false;
+        ADDITIVES_QUERY_TEXT = query.replaceAll(" ", "%20");
+        new AdditivesAsyncTask().execute();
+    }
 
 
     @Override
@@ -98,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        searchAdditive(((TextView)v).getText().toString());
     }
 
     class AdditivesAsyncTask extends AsyncTask<Void, Void, Void>{

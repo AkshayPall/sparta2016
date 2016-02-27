@@ -12,5 +12,134 @@
     tools:context="com.example.rohitsharma.sparta2016.MainActivity"
     tools:showIn="@layout/activity_main">
 
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Title"
+            android:id="@+id/foods_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Common Additives in Hacker Foods"
+            android:textAlignment="center"/>
+
+
+        <TextView
+            android:layout_below="@id/foods_header"
+            android:id="@+id/soylent_calcium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calcium phosphate"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/soylent_sucralose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sucralose"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/soylent_calcium"
+            android:layout_alignParentRight="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soylent 2.0"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:layout_alignTop="@id/soylent_sucralose"
+        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Riboflavin"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/soylent_sucralose"
+            android:id="@+id/soylent_riboflavin"/>
+
+    <View
+        android:id="@+id/divider_one"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/soylent_riboflavin"
+        android:background="#787878"
+        android:layout_marginBottom="16dp"/>
+
+
+
+
+    <TextView
+        android:layout_below="@id/divider_one"
+        android:id="@+id/redbull_sucralose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sucralose"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:id="@+id/redbull_citric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Citric acid"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/redbull_sucralose"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red Bull"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:layout_alignTop="@id/redbull_citric"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Magnesium carbonate"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/redbull_citric"
+        android:id="@+id/redbull_magnesium"/>
+
+    <View
+        android:id="@+id/divider_two"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/redbull_magnesium"
+        android:background="#787878"/>
+
+
+
+
+
+    <TextView
+        android:layout_below="@id/divider_two"
+        android:id="@+id/chips_tbhq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TBHQ"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:id="@+id/chips_aspartame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aspartame"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/chips_tbhq"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Potato Chips"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:layout_alignTop="@id/chips_aspartame"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Tartrazine"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/chips_aspartame"
+        android:id="@+id/chips_tartrazine"/>
+
 
 </RelativeLayout>
