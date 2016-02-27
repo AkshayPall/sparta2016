@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -111,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 // http://openweathermap.org/API#forecast
 
 
-                URL url = (IS_CODE_RECEIVED) ? new URL(INFO_ON_ADDITIVE_URL+ADDITIVE_CODE+INFO_ON_ADDITIVE_URL_END_LANG) :
-                        new URL(SEARCH_ADDITIVE_URL +ADDITIVES_QUERY_TEXT+ SEARCH_ADDITIVE_URL_END_SORT);
+                URL url = new URL(SEARCH_ADDITIVE_URL +ADDITIVES_QUERY_TEXT+ SEARCH_ADDITIVE_URL_END_SORT);
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -145,10 +145,84 @@ public class MainActivity extends AppCompatActivity {
                 forecastJsonStr = buffer.toString();
                 Log.wtf("Results:", forecastJsonStr);
                 try {
-                    JSONObject result = new JSONObject(forecastJsonStr);
+                    JSONArray results = new JSONArray(forecastJsonStr);
+                    JSONObject result = results.getJSONObject(0);
+                        //TODO: execute asynctask again with received code
+                        IS_CODE_RECEIVED = true;
+                        ADDITIVE_CODE = result.getString("code");
+                    try {
+                        // Construct the URL for the OpenWeatherMap query
+                        // Possible parameters are avaiable at OWM's forecast API page, at
+                        // http://openweathermap.org/API#forecast
+
+
+                        url = new URL(INFO_ON_ADDITIVE_URL+ADDITIVE_CODE+INFO_ON_ADDITIVE_URL_END_LANG);
+
+                        // Create the request to OpenWeatherMap, and open the connection
+                        urlConnection = (HttpURLConnection) url.openConnection();
+                        urlConnection.setRequestMethod("GET");
+                        urlConnection.setRequestProperty("X-Mashape-Key", "ZP5VMVLaIymshR5c43JaqJIFegmap1AXlMfjsnlm1sC1HKPQZi");
+                        urlConnection.setRequestProperty("Accept", "application/json");
+                        urlConnection.connect();
+
+                        // Read the input stream into a String
+                        inputStream = urlConnection.getInputStream();
+                        buffer = new StringBuffer();
+                        if (inputStream == null) {
+                            // Nothing to do.
+                            forecastJsonStr = null;
+                        }
+                        reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                        String line2;
+                        while ((line = reader.readLine()) != null) {
+                            // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
+                            // But it does make debugging a *lot* easier if you print out the completed
+                            // buffer for debugging.
+                            buffer.append(line + "\n");
+                        }
+
+                        if (buffer.length() == 0) {
+                            // Stream was empty.  No point in parsing.
+                            forecastJsonStr = null;
+                        }
+                        forecastJsonStr = buffer.toString();
+                        Log.wtf("Results:", forecastJsonStr);
+                        try {
+                            Additive additive = new Additive(forecastJsonStr);
+                            Log.wtf("Additive Name", additive.getCategoryName());
+                            IS_CODE_RECEIVED = false;
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Snackbar.make(null, "An error has occured", Snackbar.LENGTH_LONG);
+                        }
+
+
+                        //TODO: parse data
+
+                    } catch (IOException e) {
+                        Log.e("PlaceholderFragment", "Error ", e);
+                        // If the code didn't successfully get the weather data, there's no point in attemping
+                        // to parse it.
+                        forecastJsonStr = null;
+                    } finally{
+                        if (urlConnection != null) {
+                            urlConnection.disconnect();
+                        }
+                        if (reader != null) {
+                            try {
+                                reader.close();
+                            } catch (final IOException e) {
+                                Log.e("PlaceholderFragment", "Error closing stream", e);
+                            }
+                        }
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Snackbar.make(null, "An error has occured", Snackbar.LENGTH_LONG);
                 }
 
 
