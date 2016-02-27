@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         additivesSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                //TODO: add loading indicator
                 IS_CODE_RECEIVED = false;
                 ADDITIVES_QUERY_TEXT = query.replaceAll(" ", "%20");
                 new AdditivesAsyncTask().execute();

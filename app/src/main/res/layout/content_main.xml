@@ -12,11 +12,5 @@
     tools:context="com.example.rohitsharma.sparta2016.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <SearchView
-        android:id="@+id/main_additives_searchview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:queryHint="Search additives..."/>
+
 </RelativeLayout>

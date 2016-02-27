@@ -33,6 +33,7 @@ public class ScrollingActivity extends AppCompatActivity {
             setTitle(additive.getAdditiveName());
 
             //getting all the textviews and setting them with additive data
+            //TODO: fix issue when attributes are null
             TextView category = (TextView)findViewById(R.id.scrolling_category_name);
             category.setText(additive.getCategoryName());
 
@@ -43,7 +44,10 @@ public class ScrollingActivity extends AppCompatActivity {
             foods.setText(Html.fromHtml("<b>Foods it's used in: </b> "+additive.getFoodsUsedIn()));
 
             TextView notice = (TextView)findViewById(R.id.scrolling_notices);
-            String text = additive.getHealthNotices() == null ? "None" : additive.getHealthNotices();
+            String text = additive.getHealthNotices().equals("null") ||
+                    additive.getHealthNotices().equals(null) ||
+                    additive.getHealthNotices().equals("") ?
+                    "None" : additive.getHealthNotices();
             notice.setText(Html.fromHtml("<b>Health notice: </b> "+text));
 
             TextView info = (TextView)findViewById(R.id.scrolling_info);
@@ -51,7 +55,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
             if(!additive.isIsVegetarian()) {
                 TextView vegetarian = (TextView)findViewById(R.id.scrolling_is_vegetarian);
-                vegetarian.setVisibility(View.GONE);
+                vegetarian.setText("Non-Vegetarian");
             }
         }
 
