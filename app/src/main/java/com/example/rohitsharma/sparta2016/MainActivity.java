@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.wtf("Results:", forecastJsonStr);
                         try {
                             Additive additive = new Additive(forecastJsonStr);
-                            Log.wtf("Additive Name", additive.getCategoryName());
+                            Log.wtf("Additive Name", additive.getAdditiveName());
                             IS_CODE_RECEIVED = false;
 
 
