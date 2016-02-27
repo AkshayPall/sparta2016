@@ -26,6 +26,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String ADDITIVE_EXTRA = "additive_extra";
     static boolean IS_CODE_RECEIVED;
     static String ADDITIVE_CODE;
 
@@ -192,6 +193,9 @@ public class MainActivity extends AppCompatActivity {
                             Additive additive = new Additive(forecastJsonStr);
                             Log.wtf("Additive Name", additive.getAdditiveName());
                             IS_CODE_RECEIVED = false;
+                            Intent i = new Intent(MainActivity.this, ScrollingActivity.class);
+                            i.putExtra(ADDITIVE_EXTRA, additive);
+                            startActivity(i);
 
 
 

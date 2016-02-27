@@ -3,10 +3,12 @@ package com.example.rohitsharma.sparta2016;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by rohitsharma on 2016-02-27.
  */
-public class Additive {
+public class Additive implements Serializable {
     public Additive(String forecastJsonStr) throws JSONException {
         JSONObject object = new JSONObject(forecastJsonStr);
         mCategoryName = categoryIntToName(object.getInt("category_id"));

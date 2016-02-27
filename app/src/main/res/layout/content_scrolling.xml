@@ -8,10 +8,54 @@
     tools:context="com.example.rohitsharma.sparta2016.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/scrolling_category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category Name"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
 
+        <TextView
+            android:id="@+id/scrolling_is_vegetarian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vegetarian"
+            android:textColor="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/scrolling_function"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Function: hfjkds fdjs hjksd f hsdjf j"/>
+
+        <TextView
+            android:id="@+id/scrolling_foods"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Function: hfjkds fdjs hjksd f hsdjf j" />
+
+        <TextView
+            android:id="@+id/scrolling_notices"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Function: hfjkds fdjs hjksd f hsdjf j" />
+
+        <TextView
+            android:id="@+id/scrolling_info"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Function:hfjkds fdjs hjksd f hsdjf j" />
+
+
+
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
