@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     static String INFO_ON_ADDITIVE_URL_END_LANG = "?locale=en";
 
     static String UPC_URL_1 = "https://api.nutritionix.com/v1_1/item?upc=";
-    static String UPC_URL_2 = "&appId=d57db3f1&appKey=91240e9963d611ea799cd4b47e1f7420";
+    static String UPC_URL_2 = "&appId=81c58a0b&appKey=d0a5f5b609638842a8ff728e55ac8b97";
     static String UPC_CODE="052000124859";
 
     @Override

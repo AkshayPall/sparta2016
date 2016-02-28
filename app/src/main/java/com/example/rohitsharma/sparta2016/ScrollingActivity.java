@@ -1,5 +1,6 @@
 package com.example.rohitsharma.sparta2016;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -86,6 +87,14 @@ public class ScrollingActivity extends AppCompatActivity {
                         App.AddObjectToMap(upcScannedObject);
                     }
                     Log.wtf("Success", "h4cker");
+                    Snackbar.make(view, "Added successfully!", Snackbar.LENGTH_LONG)
+                            .setAction("View", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i = new Intent(ScrollingActivity.this, PredictionActivity.class);
+                                    startActivity(i);
+                                }
+                            }).show();
                 }
             });
         }

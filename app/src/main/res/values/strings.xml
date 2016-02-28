@@ -139,6 +139,12 @@
         <item>-1</item>
     </string-array>
 
+        <string-array name="sex_array">
+            <item>Male</item>
+            <item>Female</item>
+            <item>Non-binary</item>
+        </string-array>
+
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->

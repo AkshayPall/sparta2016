@@ -32,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UpcScannerActivity"></activity>
+        <activity android:name=".UpcScannerActivity" />
+        <activity android:name=".PredictionActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
