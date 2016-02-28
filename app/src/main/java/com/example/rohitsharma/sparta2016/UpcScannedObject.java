@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class UpcScannedObject implements Serializable {
     public UpcScannedObject (String json) throws JSONException {
         JSONObject object = new JSONObject(json);
-        mName = object.getString("brand_name")+object.getString("item_name");
+        mName = object.getString("brand_name")+" "+object.getString("item_name");
         mCalories = object.getInt("nf_calories");
         mFat = object.getInt("nf_total_fat");
         mContainsGluten = object.get("allergen_contains_gluten") != null;
