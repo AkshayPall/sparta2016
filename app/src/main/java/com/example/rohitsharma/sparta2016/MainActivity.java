@@ -336,6 +336,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
                 forecastJsonStr = buffer.toString();
                 Log.wtf("UPC Results:", forecastJsonStr);
+                UpcScannedObject upcScannedObject = new UpcScannedObject(forecastJsonStr);
+                Log.wtf("Parsed data UPC", upcScannedObject.getName()+", Sugar: "+upcScannedObject.getSugar());
 
                 ////////////// EHRH EH RE HREH RHE  ERHRE HHRE H ERUE HIUDF GFDHJKGDF JKGHDFJIGHDF U
                 //***WHERE TO CONTINUE WITH UPC***
@@ -345,6 +347,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 // If the code didn't successfully get the weather data, there's no point in attemping
                 // to parse it.
                 forecastJsonStr = null;
+            } catch (JSONException e) {
+                e.printStackTrace();
             } finally{
                 if (urlConnection != null) {
                     urlConnection.disconnect();

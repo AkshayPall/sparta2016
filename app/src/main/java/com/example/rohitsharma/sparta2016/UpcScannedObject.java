@@ -23,4 +23,28 @@ public class UpcScannedObject {
     private boolean mContainsGluten;
     private int mSugar;
     private int mProtein;
+
+    public String getName() {
+        return mName;
+    }
+
+    public int getCalories() {
+        return mCalories;
+    }
+
+    public int getFat() {
+        return mFat;
+    }
+
+    public boolean isContainsGluten() {
+        return mContainsGluten;
+    }
+
+    public int getSugar() {
+        return mSugar;
+    }
+
+    public int getProtein() {
+        return mProtein;
+    }
 }
