@@ -3,6 +3,7 @@ package com.example.rohitsharma.sparta2016;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
@@ -14,11 +15,22 @@ public class App extends Application {
 
     //key is each food, value is quantity
     public static HashMap<UpcScannedObject, Integer> FOODS_EATEN_MAP;
+    public static ArrayList<UpcScannedObject> FOOD_LIST = new ArrayList<>();
 
     @Override
     public void onCreate() {
         FOODS_EATEN_MAP = new HashMap<>();
         super.onCreate();
+    }
+
+    public static ArrayList<UpcScannedObject> GetFoodList() {
+        FOOD_LIST.clear();
+        Object[] foods = FOODS_EATEN_MAP.keySet().toArray();
+        UpcScannedObject[] realFoods = new UpcScannedObject[foods.length];
+        for (UpcScannedObject food : realFoods) {
+            FOOD_LIST.add(food);
+        }
+        return FOOD_LIST;
     }
 
     //estimating values
@@ -110,9 +122,10 @@ public class App extends Application {
 
         //Total energy expenditure allowed, assume hackers have no exercise
         Double TEE = BMR*1.2;
-        Log.wtf("TEE", )
+        Log.wtf("TEE", ""+TEE);
 
         excess = calories+fat*9 - TEE.intValue();
+        Log.wtf("EXCESS", ""+excess);
 
         if (excess > 0){
             return excess;
@@ -124,7 +137,6 @@ public class App extends Application {
     public static int WeeksToWait (int calories, int fat, int weight, int height, boolean isFemale, int age, int weeklyCaloriesBurnt) {
         return  ExcessCalories(calories, fat, weight, height, isFemale, age)/weeklyCaloriesBurnt;
     }
-    //TODO: how many extra calories to burn
 
 
 

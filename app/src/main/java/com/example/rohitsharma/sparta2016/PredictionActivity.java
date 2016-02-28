@@ -2,6 +2,8 @@ package com.example.rohitsharma.sparta2016;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -60,6 +62,13 @@ public class PredictionActivity extends AppCompatActivity {
                 mWeeksT.setText("" + Weeks(mEWeight, mEHeight, mEAge, mEWorkout, mSpinner) + " Weeks to Wait Until Next Hackathon");
             }
         });
+
+
+        RecyclerView foodList = (RecyclerView) findViewById(R.id.food_recycler);
+        foodList.setLayoutManager(new LinearLayoutManager(this));
+
+        FoodListAdapter foodAdapter = new FoodListAdapter(App.FOODS_EATEN_MAP, App.GetFoodList());
+        foodList.setAdapter(foodAdapter);
     }
 
     private int Weeks(EditText eWeight, EditText eHeight, EditText eAge, EditText eWorkout, Spinner spinner) {
