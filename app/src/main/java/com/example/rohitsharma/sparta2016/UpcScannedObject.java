@@ -12,12 +12,12 @@ public class UpcScannedObject implements Serializable {
     public UpcScannedObject (String json) throws JSONException {
         JSONObject object = new JSONObject(json);
         mName = object.getString("brand_name")+" "+object.getString("item_name");
-        mCalories = object.getInt("nf_calories");
-        mFat = object.getInt("nf_total_fat");
+        mCalories = object.get("nf_calories") == null || object.get("nf_calories").equals("null") ? 0: object.getInt("nf_calories");
+        mFat = object.get("nf_total_fat") == null || object.get("nf_total_fat").equals("null") ? 0: object.getInt("nf_total_fat");
         mContainsGluten = object.get("allergen_contains_gluten") != null;
-        mSugar = object.getInt("nf_sugars");
-        mProtein = object.getInt("nf_protein");
-        mCarbohydrates = object.getInt("nf_total_carbohydrate");
+        mSugar = object.get("nf_sugars") == null || object.get("nf_sugars").equals("null") ? 0:object.getInt("nf_sugars");
+        mProtein = object.get("nf_protein") == null || object.get("nf_protein").equals("null")? 0:object.getInt("nf_protein");
+        mCarbohydrates = object.get("nf_total_carbohydrate") == null || object.get("nf_total_carbohydrate").equals("null") ? 0:object.getInt("nf_total_carbohydrate");
     }
 
     //daily limits of nutrients

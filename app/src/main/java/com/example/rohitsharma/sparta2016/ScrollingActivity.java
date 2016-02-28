@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,15 +18,6 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         Additive additive;
         if(getIntent().getSerializableExtra(MainActivity.ADDITIVE_EXTRA) != null){
@@ -59,7 +51,7 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         } else if (getIntent().getSerializableExtra(MainActivity.UPC_EXTRA) != null) {
             //// TODO: 2016-02-28 SETUP FOR NUTRIENT VALUES
-            UpcScannedObject upcScannedObject = (UpcScannedObject)getIntent().getSerializableExtra(MainActivity.UPC_EXTRA);
+            final UpcScannedObject upcScannedObject = (UpcScannedObject)getIntent().getSerializableExtra(MainActivity.UPC_EXTRA);
 
             setTitle(upcScannedObject.getName());
             TextView category = (TextView)findViewById(R.id.scrolling_category_name);
@@ -83,6 +75,19 @@ public class ScrollingActivity extends AppCompatActivity {
             } else {
                 vegetarian.setText("Gluten-free");
             }
+
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(App.IsPresentInMap(upcScannedObject)){
+                        App.IncrementQuantity(upcScannedObject);
+                    } else {
+                        App.AddObjectToMap(upcScannedObject);
+                    }
+                    Log.wtf("Success", "h4cker");
+                }
+            });
         }
 
     }
