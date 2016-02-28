@@ -19,11 +19,14 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         Additive additive;
         if(getIntent().getSerializableExtra(MainActivity.ADDITIVE_EXTRA) != null){
             additive = (Additive)getIntent().getSerializableExtra(MainActivity.ADDITIVE_EXTRA);
             setTitle(additive.getAdditiveName());
+
+            fab.setVisibility(View.GONE);
 
             //getting all the textviews and setting them with additive data
             //TODO: fix issue when attributes are null
@@ -76,8 +79,6 @@ public class ScrollingActivity extends AppCompatActivity {
             } else {
                 vegetarian.setText("Gluten-free");
             }
-
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
