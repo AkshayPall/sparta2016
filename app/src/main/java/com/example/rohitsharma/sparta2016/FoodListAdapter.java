@@ -1,6 +1,7 @@
 package com.example.rohitsharma.sparta2016;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,5 +57,15 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     public FoodListAdapter(HashMap<UpcScannedObject, Integer> map, ArrayList<UpcScannedObject> foodsList) {
         mFoodsMap = map;
         mFoodsList = foodsList;
+    }
+
+    @Override
+    public void onViewAttachedToWindow(ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
     }
 }

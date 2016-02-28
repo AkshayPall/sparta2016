@@ -24,12 +24,6 @@ public class App extends Application {
     }
 
     public static ArrayList<UpcScannedObject> GetFoodList() {
-        FOOD_LIST.clear();
-        Object[] foods = FOODS_EATEN_MAP.keySet().toArray();
-        UpcScannedObject[] realFoods = new UpcScannedObject[foods.length];
-        for (UpcScannedObject food : realFoods) {
-            FOOD_LIST.add(food);
-        }
         return FOOD_LIST;
     }
 
@@ -147,6 +141,7 @@ public class App extends Application {
     }
 
     public static void AddObjectToMap (UpcScannedObject object){
+        FOOD_LIST.add(object);
         FOODS_EATEN_MAP.put(object, 1);
     }
 
