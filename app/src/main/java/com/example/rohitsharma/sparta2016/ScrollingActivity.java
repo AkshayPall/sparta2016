@@ -57,6 +57,32 @@ public class ScrollingActivity extends AppCompatActivity {
                 TextView vegetarian = (TextView)findViewById(R.id.scrolling_is_vegetarian);
                 vegetarian.setText("Non-Vegetarian");
             }
+        } else if (getIntent().getSerializableExtra(MainActivity.UPC_EXTRA) != null) {
+            //// TODO: 2016-02-28 SETUP FOR NUTRIENT VALUES
+            UpcScannedObject upcScannedObject = (UpcScannedObject)getIntent().getSerializableExtra(MainActivity.UPC_EXTRA);
+
+            setTitle(upcScannedObject.getName());
+            TextView category = (TextView)findViewById(R.id.scrolling_category_name);
+            category.setText(upcScannedObject.getCalories()+" Cal");
+
+            TextView function = (TextView)findViewById(R.id.scrolling_function);
+            function.setText(Html.fromHtml("<b>Fat: </b> "+upcScannedObject.getFat()));
+
+            TextView foods = (TextView)findViewById(R.id.scrolling_foods);
+            foods.setText(Html.fromHtml("<b>Protein (g): </b> "+upcScannedObject.getProtein()));
+
+            TextView notice = (TextView)findViewById(R.id.scrolling_notices);
+            notice.setText(Html.fromHtml("<b>Carbohydrates (g): </b> "+upcScannedObject.getCarbs()));
+
+            TextView info = (TextView)findViewById(R.id.scrolling_info);
+            info.setText(Html.fromHtml("<b>Sugar (g): </b> "+upcScannedObject.getSugar()));
+
+            TextView vegetarian = (TextView)findViewById(R.id.scrolling_is_vegetarian);
+            if(upcScannedObject.isContainsGluten()) {
+                vegetarian.setText("Contains Gluten");
+            } else {
+                vegetarian.setText("Gluten-free");
+            }
         }
 
     }

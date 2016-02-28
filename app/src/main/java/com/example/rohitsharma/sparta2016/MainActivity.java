@@ -30,6 +30,11 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public static final String ADDITIVE_EXTRA = "additive_extra";
+    public static final String UPC_EXTRA = "upc_extra";
+    public static final String UPC_SCANNED_EXTRA = "upc_scanned_extra";
+    public static final int SCANNED_REQUEST_CODE = 5;
+
+
     static boolean IS_CODE_RECEIVED;
     static String ADDITIVE_CODE;
 
@@ -55,9 +60,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                new UpcAsyncTask().execute();
+                Intent intent = new Intent(MainActivity.this, UpcScannerActivity.class);
+                intent.putExtra("SCAN_MODE", "PRODUCT_MODE");//for Qr code, its "QR_CODE_MODE" instead of "PRODUCT_MODE"
+                intent.putExtra("SAVE_HISTORY", false);//this stops saving ur barcode in barcode scanner app's history
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -100,6 +106,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         chipsAspartame.setOnClickListener(this);
         TextView chipsTartrazine = (TextView)findViewById(R.id.chips_tartrazine);
         chipsTartrazine.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.wtf("Attempt to GET info", "pls work");
+        new UpcAsyncTask().execute();
+        Log.wtf("Done sending request", "???");
+//        if (requestCode == SCANNED_REQUEST_CODE) {
+//            if (data.getStringExtra(UPC_SCANNED_EXTRA) != null){
+//                UPC_CODE = data.getStringExtra(UPC_SCANNED_EXTRA);
+//                new UpcAsyncTask().execute();
+//            }
+//
+//        }
     }
 
     private void searchAdditive(String query) {
@@ -338,6 +359,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Log.wtf("UPC Results:", forecastJsonStr);
                 UpcScannedObject upcScannedObject = new UpcScannedObject(forecastJsonStr);
                 Log.wtf("Parsed data UPC", upcScannedObject.getName()+", Sugar: "+upcScannedObject.getSugar());
+                Intent i = new Intent(MainActivity.this, ScrollingActivity.class);
+                i.putExtra(UPC_EXTRA,upcScannedObject);
+                startActivity(i);
 
                 ////////////// EHRH EH RE HREH RHE  ERHRE HHRE H ERUE HIUDF GFDHJKGDF JKGHDFJIGHDF U
                 //***WHERE TO CONTINUE WITH UPC***
