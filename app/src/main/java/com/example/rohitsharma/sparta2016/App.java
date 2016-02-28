@@ -1,6 +1,7 @@
 package com.example.rohitsharma.sparta2016;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -102,12 +103,14 @@ public class App extends Application {
         return sugar;
     }
 
-    public int ExcessCalories(int calories, int fat, int weight, int height, boolean isFemale, int age) {
+    public static int ExcessCalories(int calories, int fat, int weight, int height, boolean isFemale, int age) {
         int excess = 0;
         double BMR = isFemale ? 10*weight+6.25*height-5*age-161 : 10*weight+6.25*height-5*age+5;
+        Log.wtf("BMR", ""+BMR);
 
         //Total energy expenditure allowed, assume hackers have no exercise
         Double TEE = BMR*1.2;
+        Log.wtf("TEE", )
 
         excess = calories+fat*9 - TEE.intValue();
 
@@ -118,8 +121,8 @@ public class App extends Application {
         }
     }
 
-    public int WeeksToWait (int excessCalories, int weeklyCaloriesBurnt) {
-        return  excessCalories/weeklyCaloriesBurnt;
+    public static int WeeksToWait (int calories, int fat, int weight, int height, boolean isFemale, int age, int weeklyCaloriesBurnt) {
+        return  ExcessCalories(calories, fat, weight, height, isFemale, age)/weeklyCaloriesBurnt;
     }
     //TODO: how many extra calories to burn
 
